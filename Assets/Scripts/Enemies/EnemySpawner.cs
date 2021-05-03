@@ -9,12 +9,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform[] _wayPoints;
+    [SerializeField] private float _timeBetweenWave;
 
     private List<Enemy> _enemies = new List<Enemy>();
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private float _timeAfterLastSpawn;
     private int _spawned;
+    private float _timeAfterWave;
 
     public event UnityAction AllEnemiesSpawned;
     public event UnityAction AllEnemiesSlained;
@@ -26,6 +28,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        /*_timeAfterWave += Time.deltaTime;
+        if (_timeAfterWave <= _timeBetweenWave)
+            return;*/
         if (_currentWave == null)
             return;
         _timeAfterLastSpawn += Time.deltaTime;
